@@ -4,11 +4,6 @@ compiler:
     - clang
     - gcc
 
-notifications:
-    email:
-        on_failure: always
-        on_success: change
-
 before_install:
     - sudo apt-get update
     - sudo apt-get install cmake
@@ -25,7 +20,3 @@ before_script:
 
 script:
     - ctest -V
-
-branches:
-    only:
-        -master
