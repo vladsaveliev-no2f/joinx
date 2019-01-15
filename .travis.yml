@@ -12,7 +12,7 @@ before_install:
     - sudo apt-get install libboost-all-dev
 
 install:
-    - sudo apt-get install libboost-all-dev zlib1g-dev libbz2-dev
+    - sudo apt-get install libboost-all-dev zlib1g-dev libbz2-dev tar
 
 before_script:
     - git submodule update --init
@@ -23,3 +23,12 @@ before_script:
 
 script:
     - ctest -V
+
+after_success:
+    - tar -czf /home/travis/build/vladsaveliev/joinx/build.tar.gz /home/travis/build/vladsaveliev/joinx/build
+
+deploy:
+  provider: releases
+  api_key: 9cdeb0880656003619710bde13ecf8c709d658c6
+  file: /home/travis/build/vladsaveliev/joinx/build.tar.gz
+  skip_cleanup: true
