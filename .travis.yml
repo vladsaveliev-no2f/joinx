@@ -4,36 +4,32 @@ compiler:
     - clang
     - gcc
 
-# before_install:
-#     - sudo apt-get update
-#     - sudo apt-get install cmake
-#     - sudo add-apt-repository universe
-#     - sudo apt-get update
-#     - sudo apt-get install libboost-all-dev
+before_install:
+    - sudo apt-get update
+    - sudo apt-get install cmake
+    - sudo add-apt-repository universe
+    - sudo apt-get update
+    - sudo apt-get install libboost-all-dev
 
-# install:
-#     - sudo apt-get install libboost-all-dev zlib1g-dev libbz2-dev tar
+install:
+    - sudo apt-get install libboost-all-dev zlib1g-dev libbz2-dev tar
 
-# before_script:
-#     - git submodule update --init
-#     - mkdir build
-#     - cd build
-#     - cmake .. -DCMAKE_BUILD_TYPE=debug
-#     - make VERBOSE=1
-
-# script:
-#     - ctest -V
-
-# after_success:
-#     - tar -czf /home/travis/build/vladsaveliev/joinx/build.tar.gz /home/travis/build/vladsaveliev/joinx/build
+before_script:
+    - git submodule update --init
+    - mkdir build
+    - cd build
+    - cmake .. -DCMAKE_BUILD_TYPE=debug
+    - make VERBOSE=1
 
 script:
-    touch a.tar.gz
+    - ctest -V
+
+after_success:
+    - tar -czf /home/travis/build/vladsaveliev-no2f/joinx/build.tar.gz /home/travis/build/vladsaveliev-no2f/joinx/build
 
 deploy:
   provider: releases
-  #file: /home/travis/build/vladsaveliev/joinx/build.tar.gz
-  filt: a.tar.gz
+  file: /home/travis/build/vladsaveliev-no2f/joinx/build.tar.gz
   skip_cleanup: true
 #  user: vladsaveliev-no2f
 #  password:
