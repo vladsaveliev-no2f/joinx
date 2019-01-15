@@ -7,9 +7,12 @@ compiler:
 before_install:
     - sudo apt-get update
     - sudo apt-get install cmake
+    - sudo add-apt-repository universe
+    - sudo apt-get update
+    - sudo apt-get install libboost-all-dev
 
 install:
-    - sudo apt-get install libboost1.48-all-dev zlib1g-dev libbz2-dev
+    - sudo apt-get install libboost-all-dev zlib1g-dev libbz2-dev
 
 before_script:
     - git submodule update --init
