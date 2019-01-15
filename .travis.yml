@@ -4,31 +4,35 @@ compiler:
     - clang
     - gcc
 
-before_install:
-    - sudo apt-get update
-    - sudo apt-get install cmake
-    - sudo add-apt-repository universe
-    - sudo apt-get update
-    - sudo apt-get install libboost-all-dev
+# before_install:
+#     - sudo apt-get update
+#     - sudo apt-get install cmake
+#     - sudo add-apt-repository universe
+#     - sudo apt-get update
+#     - sudo apt-get install libboost-all-dev
 
-install:
-    - sudo apt-get install libboost-all-dev zlib1g-dev libbz2-dev tar
+# install:
+#     - sudo apt-get install libboost-all-dev zlib1g-dev libbz2-dev tar
 
-before_script:
-    - git submodule update --init
-    - mkdir build
-    - cd build
-    - cmake .. -DCMAKE_BUILD_TYPE=debug
-    - make VERBOSE=1
+# before_script:
+#     - git submodule update --init
+#     - mkdir build
+#     - cd build
+#     - cmake .. -DCMAKE_BUILD_TYPE=debug
+#     - make VERBOSE=1
+
+# script:
+#     - ctest -V
+
+# after_success:
+#     - tar -czf /home/travis/build/vladsaveliev/joinx/build.tar.gz /home/travis/build/vladsaveliev/joinx/build
 
 script:
-    - ctest -V
-
-after_success:
-    - tar -czf /home/travis/build/vladsaveliev/joinx/build.tar.gz /home/travis/build/vladsaveliev/joinx/build
+    touch a.tar.gz
 
 deploy:
   provider: releases
-  api_key: 9cdeb0880656003619710bde13ecf8c709d658c6
-  file: /home/travis/build/vladsaveliev/joinx/build.tar.gz
+  api_key: "30e839b907626b1a137ef5a733f654f774b1b914"
+  #file: /home/travis/build/vladsaveliev/joinx/build.tar.gz
+  filt: a.tar.gz
   skip_cleanup: true
